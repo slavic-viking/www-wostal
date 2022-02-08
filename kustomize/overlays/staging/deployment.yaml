@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wostal-eu
+  labels:
+    app: wostal-eu
+spec:
+  selector:
+    matchLabels:
+      app: wostal-eu
+  template:
+    metadata:
+      labels:
+        app: wostal-eu
+    spec:
+      containers:
+      - name: wostal-eu
+        image: slavicviking/www-wostal
+        ports:
+        - containerPort: 80
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 80
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 80
+        resources:
+          limits:
+            cpu: 100m
+            memory: 256Mi
+          requests:
+            cpu: 80m
+            memory: 128Mi

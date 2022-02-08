@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: wostal-eu-ingress
+  namespace: production
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    kubernetes.io/ingress.class: nginx
+    external-dns.alpha.kubernetes.io/hostname: .wostal.eu.,www.wostal.eu
+spec:
+  rules:
+  - host: wostal.eu
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: wostal-eu
+            port:
+              number: 80
+  tls:
+  - hosts:
+    - wostal.eu
+    secretName: wostal-eu-tls
