@@ -9,7 +9,6 @@ spec:
   - wostal-eu
   hosts:
   - wostal.eu
-  - acme.com
   http:
   - name: primary
     route:
