@@ -76,8 +76,7 @@ spec:
     failureLimit: 3
     provider:
       prometheus:
-        address: http://prometheus-server.monitoring
-        query: |
+        address: http://kube-prometheus-kube-prome-prometheus.monitoring.svc.cluster.local:9090
           sum(irate(
             istio_requests_total{
               reporter="source",
@@ -97,7 +96,7 @@ spec:
     failureLimit: 3
     provider:
       prometheus:
-        address: http://prometheus-server.monitoring
+        address: http://kube-prometheus-kube-prome-prometheus.monitoring.svc.cluster.local:9090
         query: |
           sum(irate(
             istio_request_duration_milliseconds_sum{
