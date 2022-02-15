@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: wostal-eu
-        image: vfarcic/wostal-eu
+        image: slavicviking/www-wostal
         ports:
         - containerPort: 80
         livenessProbe:
