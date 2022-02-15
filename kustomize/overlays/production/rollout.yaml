@@ -12,10 +12,11 @@ spec:
     metadata:
       labels:
         app: wostal-eu
+        istio-injection: enabled
     spec:
       containers:
       - name: wostal-eu
-        image: slavicviking/www-wostal
+        image: vfarcic/wostal-eu
         ports:
         - containerPort: 80
         livenessProbe:
@@ -44,6 +45,12 @@ spec:
     canary:
       canaryService: wostal-eu-canary
       stableService: wostal-eu
+      trafficRouting:
+        istio:
+          virtualService:
+            name: wostal-eu
+            routes:
+            - primary
       steps:
       - setWeight: 10
       - pause: {duration: 2m}
@@ -60,6 +67,7 @@ spec:
           value: "wostal-eu-canary.production.svc.cluster.local"
 
 ---
+
 apiVersion: argoproj.io/v1alpha1
 kind: AnalysisTemplate
 metadata:
@@ -78,7 +86,7 @@ spec:
         address: http://prometheus-server.monitoring
         query: |
           sum(irate(
-            istio_requests_total{
+            istio_requests_total{  
               reporter="source",
               destination_service=~"{{args.service-name}}",
               response_code=~"2.*"
@@ -109,8 +117,9 @@ spec:
               destination_service=~"{{args.service-name}}"
             }[2m]
           ))
-
+      
 ---
+
 apiVersion: v1
 kind: Service
 metadata:
