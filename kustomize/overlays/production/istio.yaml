@@ -8,7 +8,8 @@ spec:
   gateways:
   - wostal-eu
   hosts:
-  - wostal-eu
+  - wostal-eu.local
+  - acme.com
   http:
   - name: primary
     route:
