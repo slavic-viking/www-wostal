@@ -46,10 +46,10 @@ googleAnalytics = ""
     name = "fas fa-envelope"
     weight = 1
 
-#[[menu.icon]]
-#    url = "https://github.com/username/"
-#    name = "fab fa-github"
-#    weight = 2
+[[menu.icon]]
+    url = "https://github.com/slavic-viking/"
+    name = "fab fa-github"
+    weight = 2
 
 #[[menu.icon]]
 #    url = "https://twitter.com/username/"
