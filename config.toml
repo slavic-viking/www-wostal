@@ -51,10 +51,10 @@ googleAnalytics = ""
     name = "fab fa-github"
     weight = 2
 
-#[[menu.icon]]
-#    url = "https://twitter.com/username/"
-#    name = "fab fa-twitter"
-#    weight = 3
+[[menu.icon]]
+    url = "https://twitter.com/tomasz_wostal"
+    name = "fab fa-twitter"
+    weight = 3
 
 #[[menu.icon]]
 #    url = "https://www.linkedin.com/in/username/"
