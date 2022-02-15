@@ -46,13 +46,11 @@ spec:
       canaryService: wostal-eu-canary
       stableService: wostal-eu
       trafficRouting:
-        nginx:
-          stableIngress: wostal-eu-ingress
-        #istio:
-        #  virtualService:
-        #    name: wostal-eu-virtual
-        #    routes:
-        #    - primary
+        istio:
+          virtualService:
+            name: wostal-eu
+            routes:
+            - primary
       steps:
       - setWeight: 10
       - pause: {duration: 2m}
@@ -60,67 +58,68 @@ spec:
       - pause: {duration: 30s}
       - setWeight: 50
       - pause: {duration: 30s}
-      # analysis:
-      #   templates:
-      #   - templateName: wostal-eu
-      #   startingStep: 2
-      #   args:
-      #   - name: service-name
-      #     value: "wostal-eu-canary.production.svc.cluster.local"
+      analysis:
+        templates:
+        - templateName: wostal-eu
+        startingStep: 2
+        args:
+        - name: service-name
+          value: "wostal-eu-canary.production.svc.cluster.local"
 
-# ---
+---
 
-# apiVersion: argoproj.io/v1alpha1
-# kind: AnalysisTemplate
-# metadata:
-#   name: wostal-eu
-# spec:
-#   args:
-#   - name: service-name
-#   metrics:
-#   - name: success-rate
-#     interval: 10s
-#     successCondition: len(result) == 0 || result[0] >= 0.8
-#     failureCondition: len(result) == 0 || result[0] < 0.8
-#     failureLimit: 5
-#     provider:
-#       prometheus:
-#         address: http://prometheus-server.monitoring
-#         query: |
-#           sum(irate(
-#             istio_requests_total{  
-#               reporter="source",
-#               destination_service=~"{{args.service-name}}",
-#               response_code=~"2.*"
-#             }[2m]
-#           )) / sum(irate(
-#             istio_requests_total{
-#               reporter="source",
-#               destination_service=~"{{args.service-name}}"
-#             }[2m]
-#           ))
-#   - name: avg-req-duration
-#     interval: 10s
-#     successCondition: len(result) == 0 || result[0] <= 1000
-#     failureCondition: len(result) == 0 || result[0] > 1000
-#     failureLimit: 5
-#     provider:
-#       prometheus:
-#         address: http://prometheus-server.monitoring
-#         query: |
-#           sum(irate(
-#             istio_request_duration_milliseconds_sum{
-#               reporter="source",
-#               destination_service=~"{{args.service-name}}"
-#             }[2m]
-#           )) / sum(irate(
-#             istio_request_duration_milliseconds_count{
-#               reporter="source",
-#               destination_service=~"{{args.service-name}}"
-#             }[2m]
-#           ))
+apiVersion: argoproj.io/v1alpha1
+kind: AnalysisTemplate
+metadata:
+  name: wostal-eu
+spec:
+  args:
+  - name: service-name
+  metrics:
+  - name: success-rate
+    interval: 10s
+    successCondition: result[0] >= 0.8
+    failureCondition: result[0] < 0.8
+    failureLimit: 3
+    provider:
+      prometheus:
+        address: http://prometheus-server.monitoring
+        query: |
+          sum(irate(
+            istio_requests_total{  
+              reporter="source",
+              destination_service=~"{{args.service-name}}",
+              response_code=~"2.*"
+            }[2m]
+          )) / sum(irate(
+            istio_requests_total{
+              reporter="source",
+              destination_service=~"{{args.service-name}}"
+            }[2m]
+          ))
+  - name: avg-req-duration
+    interval: 10s
+    successCondition: result[0] <= 1000
+    failureCondition: result[0] > 1000
+    failureLimit: 3
+    provider:
+      prometheus:
+        address: http://prometheus-server.monitoring
+        query: |
+          sum(irate(
+            istio_request_duration_milliseconds_sum{
+              reporter="source",
+              destination_service=~"{{args.service-name}}"
+            }[2m]
+          )) / sum(irate(
+            istio_request_duration_milliseconds_count{
+              reporter="source",
+              destination_service=~"{{args.service-name}}"
+            }[2m]
+          ))
       
 ---
+
 apiVersion: v1
 kind: Service
 metadata:
