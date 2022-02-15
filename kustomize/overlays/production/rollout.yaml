@@ -60,7 +60,6 @@ spec:
           value: "wostal-eu-canary.production.svc.cluster.local"
 
 ---
-
 apiVersion: argoproj.io/v1alpha1
 kind: AnalysisTemplate
 metadata:
@@ -111,7 +110,6 @@ spec:
           ))
 
 ---
-
 apiVersion: v1
 kind: Service
 metadata:
