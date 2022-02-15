@@ -48,7 +48,7 @@ spec:
       trafficRouting:
         istio:
           virtualService:
-            name: wostal-eu
+            name: wostal-eu-virtual
             routes:
             - primary
       steps:
