@@ -1,7 +1,7 @@
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
-  name: wostal-eu-virtual
+  name: wostal-eu
   labels:
     app: wostal-eu
 spec:
@@ -24,6 +24,7 @@ spec:
       weight: 0
 
 ---
+
 apiVersion: networking.istio.io/v1alpha3
 kind: Gateway
 metadata:
