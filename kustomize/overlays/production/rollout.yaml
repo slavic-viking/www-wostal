@@ -47,7 +47,7 @@ spec:
       stableService: wostal-eu
       trafficRouting:
         nginx:
-          stableIngress: wostal-eu-ingress
+          stableIngress: wostal-eu-ingress.production
         #istio:
         #  virtualService:
         #    name: wostal-eu-virtual
