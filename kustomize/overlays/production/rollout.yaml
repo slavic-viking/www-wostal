@@ -98,8 +98,8 @@ spec:
           ))
   - name: avg-req-duration
     interval: 10s
-    successCondition: len(result) == 0 || result[0] <= 1000
-    failureCondition: len(result) == 0 || result[0] > 1000
+    successCondition: len(result) == 0 || result[0] <= 5000
+    failureCondition: len(result) == 0 || result[0] > 5000
     failureLimit: 3
     provider:
       prometheus:
