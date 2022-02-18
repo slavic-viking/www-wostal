@@ -96,26 +96,26 @@ spec:
               destination_service=~"{{args.service-name}}"
             }[2m]
           ))
-  - name: avg-req-duration
-    interval: 10s
-    successCondition: len(result) == 0 || result[0] <= 5000
-    failureCondition: len(result) == 0 || result[0] > 5000
-    failureLimit: 3
-    provider:
-      prometheus:
-        address: http://prometheus-server.monitoring
-        query: |
-          sum(irate(
-            istio_request_duration_milliseconds_sum{
-              reporter="source",
-              destination_service=~"{{args.service-name}}"
-            }[2m]
-          )) / sum(irate(
-            istio_request_duration_milliseconds_count{
-              reporter="source",
-              destination_service=~"{{args.service-name}}"
-            }[2m]
-          ))
+  # - name: avg-req-duration
+  #   interval: 10s
+  #   successCondition: len(result) == 0 || result[0] <= 5000
+  #   failureCondition: len(result) == 0 || result[0] > 5000
+  #   failureLimit: 3
+  #   provider:
+  #     prometheus:
+  #       address: http://prometheus-server.monitoring
+  #       query: |
+  #         sum(irate(
+  #           istio_request_duration_milliseconds_sum{
+  #             reporter="source",
+  #             destination_service=~"{{args.service-name}}"
+  #           }[2m]
+  #         )) / sum(irate(
+  #           istio_request_duration_milliseconds_count{
+  #             reporter="source",
+  #             destination_service=~"{{args.service-name}}"
+  #           }[2m]
+  #         ))
       
 ---
 
