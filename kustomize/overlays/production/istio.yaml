@@ -8,6 +8,7 @@ spec:
   gateways:
   - wostal-eu
   hosts:
+  - wostal-eu.local
   - wostal.eu.local
   - wostal.eu
   http:
