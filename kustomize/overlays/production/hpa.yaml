@@ -1,0 +1,16 @@
+---
+
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: wostal-eu
+  labels:
+    app: wostal-eu
+spec:
+  minReplicas: 2
+  maxReplicas: 6
+  scaleTargetRef:
+    apiVersion: argoproj.io/v1alpha1
+    kind: Rollout
+    name: wostal-eu
+  targetCPUUtilizationPercentage: 80
