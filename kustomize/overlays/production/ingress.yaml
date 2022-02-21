@@ -20,7 +20,7 @@ spec:
             name: wostal-eu
             port:
               number: 80
-  #tls:
-  #- hosts:
-  #  - wostal.eu
-  #  secretName: wostal-eu-tls
+  tls:
+  - hosts:
+    - wostal.eu
+    secretName: wostal-eu-tls
