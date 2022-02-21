@@ -39,6 +39,6 @@ spec:
       protocol: HTTPS
     tls:
       mode: SIMPLE
-      credentialName: tls-wostal-eu-istioc
+      credentialName: tls-wostal-eu-istio
     hosts:
      - '*'
