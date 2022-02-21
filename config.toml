@@ -42,7 +42,7 @@ googleAnalytics = ""
 # The list of available icons can be found at http://fontawesome.io/icons.
 
 [[menu.icon]]
-    url = "mailto:tomasz@wostal.eu"
+    url = "mailto:tomasz@wostal.eu.test"
     name = "fas fa-envelope"
     weight = 1
 
