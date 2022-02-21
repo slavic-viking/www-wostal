@@ -5,6 +5,6 @@ resources:
 - hpa.yaml
 - istio.yaml
 - rollout.yaml
-- ingress.yaml
-- ingress-istio.yaml
+#- ingress.yaml
+#- ingress-istio.yaml
 namespace: production

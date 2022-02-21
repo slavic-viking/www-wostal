@@ -1,11 +1,11 @@
 apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
-  namespace: production
   annotations:
     kubernetes.io/ingress.class: istio
-     external-dns.alpha.kubernetes.io/hostname: istio.wostal.eu
+    external-dns.alpha.kubernetes.io/hostname: istio.wostal.eu
   name: wostal-eu-ingress-istio
+  namespace: production
 spec:
   rules:
   - host: istio.wostal.eu
