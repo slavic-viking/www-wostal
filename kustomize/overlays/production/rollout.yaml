@@ -78,8 +78,10 @@ spec:
   metrics:
   - name: success-rate
     interval: 10s
-    successCondition: len(result) == 0 || result[0] >= 0.8
-    failureCondition: len(result) == 0 || result[0] < 0.8
+    # successCondition: len(result) == 0 || result[0] >= 0.8
+    # failureCondition: len(result) == 0 || result[0] < 0.8
+    successCondition: result[0] >= 0.8
+    failureCondition: result[0] < 0.8
     failureLimit: 3
     provider:
       prometheus:
@@ -99,8 +101,10 @@ spec:
           ))
   - name: avg-req-duration
     interval: 10s
-    successCondition: len(result) == 0 || result[0] <= 1000
-    failureCondition: len(result) == 0 ||result[0] > 1000
+    # successCondition: len(result) == 0 || result[0] <= 1000
+    # failureCondition: len(result) == 0 ||result[0] > 1000
+    successCondition: result[0] <= 1000
+    failureCondition: result[0] > 1000
     failureLimit: 3
     provider:
       prometheus:
