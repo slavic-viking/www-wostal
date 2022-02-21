@@ -6,4 +6,5 @@ resources:
 - istio.yaml
 - rollout.yaml
 - ingress.yaml
+- ingress-istio.yaml
 namespace: production

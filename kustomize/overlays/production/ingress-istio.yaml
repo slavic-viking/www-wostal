@@ -1,0 +1,16 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: istio
+     external-dns.alpha.kubernetes.io/hostname: istio.wostal.eu
+  name: wostal-eu-ingress-istio
+spec:
+  rules:
+  - host: istio.wostal.eu
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: wostal-eu
+          servicePort: 80
