@@ -49,7 +49,7 @@ googleAnalytics = ""
 [[menu.icon]]
     url = "https://github.com/slavic-viking/"
     name = "fab fa-github"
-    weight = 2
+    weight = 9
 
 [[menu.icon]]
     url = "https://twitter.com/tomasz_wostal"
