@@ -55,9 +55,9 @@ spec:
       - setWeight: 10
       - pause: {duration: 2m}
       - setWeight: 30
-      - pause: {duration: 600s}
+      - pause: {duration: 30s}
       - setWeight: 50
-      - pause: {duration: 600s}
+      - pause: {duration: 30s}
       analysis:
         templates:
         - templateName: wostal-eu
